@@ -1,17 +1,16 @@
-import config
+from Config import config
 import sms
-import json
-import random
-file = 'quotes.json'
+from Quotes import quotes
+
+file = 'Quotes/quotes.json'
 people = config.people
 account = config.account
+person = config.people['Name']
 
 
-def get_random_quote():
-    with open(file, 'r') as data:
-        quotes = json.load(data)
-        quote = random.choice(list(quotes.items()))
-        return ''.join(quote[0] + ' - ' + quote[1]).encode('utf-8')
+def get_message(json_file):
+    quote = quotes.get_random_quote(json_file)
+    return quote
 
 
-sms.send_message(people['name'], get_random_quote(), account)
+sms.send_message(person, get_message(file), account)

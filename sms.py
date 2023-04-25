@@ -8,8 +8,8 @@ carriers = {
 }
 
 
-def send_message(phone: tuple, message: str, account: tuple):
-    number, carrier = phone
+def send_message(person: tuple, message: str, account: tuple):
+    number, carrier = person['number'], person['carrier']
     receiver = f'{number}{carriers[carrier]}'
     message = message
     user, password = account
